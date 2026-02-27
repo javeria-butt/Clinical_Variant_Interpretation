@@ -48,10 +48,12 @@ cat pipeline.sh
 ```
 
 ## Repository Contents
+
 | File/Folder | Description |
 | :--- | :--- |
 | `Data/` | Filtered VCF files and the final Excel Clinical Annotation Report. |
 | `Screenshots_acb/` | Visual evidence from AlphaMissense and REVEL for prioritized variants. |
+| `pipeline.sh` | Shell script containing the core BCFTools commands used for the analysis. |
 | `README.md` | Project documentation, workflow summary, and findings. |
 
 ## Tools and Databases
