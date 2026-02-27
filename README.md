@@ -40,6 +40,13 @@ cd Clinical_Variant_Interpretation
 * Filtered genomic data is available in: `Data/patient_final_filtered.vcf`
 * Visual evidence and pathogenicity plots are stored in: `Screenshots_acb/`
 
+### 3. Reproduce Analysis
+You can view the exact bioinformatics steps taken by inspecting the pipeline script:
+
+```bash
+cat pipeline.sh
+```
+
 ## Repository Contents
 | File/Folder | Description |
 | :--- | :--- |
