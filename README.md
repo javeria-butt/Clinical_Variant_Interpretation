@@ -66,7 +66,7 @@ Clinical_Variant_Annotation/
 │   ├── patient_final_filtered.vcf              # BCFTools-filtered and fully annotated VCF
 │   └── Clinical_Variant_Annotation_Report.xlsx # Complete clinical annotation report
 │
-├── UCSC_Visualizations/
+├── Screenshots_ACB/
 │   ├── CF_Alpha.png / CF_revel.png             # Cystic Fibrosis track visualizations
 │   ├── FH_Alpha.png / FH_revel.png             # Familial Hypercholesterolemia track visualizations
 │   └── PKU_Alpha.png / PKU_revel.png            # Phenylketonuria track visualizations
