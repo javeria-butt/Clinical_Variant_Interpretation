@@ -19,15 +19,24 @@ The pipeline is divided into several modular clinical stages:
 3. **Clinical Curation:** Integration of **ClinVar** assertions and population frequency data to categorize variants.
 4. **Classification:** Final determination of clinical significance (Pathogenic, Likely Pathogenic, or VUS) according to ACMG criteria.
 
-## Clinical Findings Summary
+### Disorders and Variants Studied
 
-| Condition | Gene | Variant (HGVSp) | Pathogenicity Predictor | ACMG Classification |
+| # | Disorder | Gene | Variant (HGVS Protein) | Chromosomal Position (GRCh38) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Cystic Fibrosis** | *CFTR* | p.Phe508del | AlphaMissense: Likely Pathogenic | Pathogenic |
-| **Familial Hypercholesterolemia** | *LDLR* | p.Asp227Glu | REVEL: 0.82 | Likely Pathogenic |
-| **Phenylketonuria** | *PAH* | p.Arg408Trp | AlphaMissense: Pathogenic | Pathogenic |
+| 1 | **Cystic Fibrosis** | *CFTR* | p.Gly551Asp (G551D) | chr7:117,587,806 |
+| 2 | **Familial Hypercholesterolemia** | *LDLR* | p.Asp227Glu (D227E) | chr19:11,105,587 |
+| 3 | **Phenylketonuria** | *PAH* | p.Arg408Trp (R408W) | chr12:102,852,747 |
 
-## Usage Instructions
+### Pathogenicity Summary
+
+| Disorder | Gene | Variant | AlphaMissense Score | REVEL Score | ClinVar Review Status | ACMG Classification |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Cystic Fibrosis** | *CFTR* | p.Gly551Asp | 0.9897 — Likely Pathogenic | 0.99 — Pathogenic | Expert Panel Reviewed ★★★★ | Pathogenic |
+| **Familial Hypercholesterolemia** | *LDLR* | p.Asp227Glu | 0.9881 — Likely Pathogenic | 0.864 — Pathogenic | Multiple Submitters ★★★ | Pathogenic |
+| **Phenylketonuria** | *PAH* | p.Arg408Trp | 0.999 — Pathogenic | 0.79 — Pathogenic | Expert Panel Reviewed ★★★★ | Pathogenic |
+
+
+## Reproducing the Analysis
 
 ### 1. Setup
 Clone the repository to your local environment:
@@ -47,14 +56,24 @@ You can view the exact bioinformatics steps taken by inspecting the pipeline scr
 cat pipeline.sh
 ```
 
-## Repository Contents
+### Repository Structure
 
-| File/Folder | Description |
-| :--- | :--- |
-| `Data/` | Filtered VCF files and the final Excel Clinical Annotation Report. |
-| `Screenshots_acb/` | Visual evidence from AlphaMissense and REVEL for prioritized variants. |
-| `pipeline.sh` | Shell script containing the core BCFTools commands used for the analysis. |
-| `README.md` | Project documentation, workflow summary, and findings. |
+```text
+Clinical_Variant_Annotation/
+│
+├── Data/
+│   ├── patient_variants.vcf                    # Raw curated VCF (ClinVar-sourced variants)
+│   ├── patient_final_filtered.vcf              # BCFTools-filtered and fully annotated VCF
+│   └── Clinical_Variant_Annotation_Report.xlsx # Complete clinical annotation report
+│
+├── UCSC_Visualizations/
+│   ├── CF_Alpha.png / CF_revel.png             # Cystic Fibrosis track visualizations
+│   ├── FH_Alpha.png / FH_revel.png             # Familial Hypercholesterolemia track visualizations
+│   └── PKU_Alpha.png / PKU_revel.png            # Phenylketonuria track visualizations
+│
+├── pipeline.sh   # BCFTools variant filtering and extraction pipeline
+└── README.md     # Project documentation
+```
 
 ## Tools and Databases
 | Tool | Version | Purpose |
@@ -64,9 +83,8 @@ cat pipeline.sh
 | **AlphaMissense** | v1.0 | Deep-learning pathogenicity prediction |
 | **REVEL** | latest | Ensemble missense variant scoring |
 
-## Data Summary
-| Parameter | Value |
-| :--- | :--- |
-| **Reference Genome** | GRCh38 (hg38) |
-| **Genes Analyzed** | CFTR, LDLR, PAH |
-| **Classification Standard** | ACMG/AMP Guidelines |
+## Conclusion
+
+All three variants identified in this analysis — **CFTR:p.Gly551Asp**, **LDLR:p.Asp227Glu**, and **PAH:p.Arg408Trp** — were classified as **Pathogenic** under ACMG/AMP guidelines. This classification is supported by convergent evidence from functional studies, population genetics, clinical observations, and computational predictors. Both **AlphaMissense** and **REVEL** scores consistently exceeded pathogenicity thresholds across all three variants, reinforcing the reliability of in-silico tools as a complement to experimental and clinical evidence in variant interpretation workflows.
+
+This repository serves as a structured reference for clinical variant annotation methodology, demonstrating how publicly available databases and computational tools can be integrated into a reproducible, evidence-based classification pipeline.
